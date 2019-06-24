@@ -9,12 +9,21 @@ $(document).ready(onReady);
 function onReady() {
   console.log('jQuery data is awesome!!!');
 
-  addColorsToDom();
+  $('#container').on('click', '.color', handleColorClick);
+
+  rendorColorsToDom();
 }
 
-function addColorsToDom() {
+function rendorColorsToDom() {
   for ( color of colorList ) {
-$('#container').append(`<li>${color}</li>`);
+    let listItemHtml = $(`<li class="color">${color}</li>`);
+    listItemHtml.data('name', color);
+  $('#container').append(listItemHtml);
 
   }
+}
+
+function handleColorClick() {
+  let colorName = $(this).data('name');
+  alert(`clicked on ${colorName}!`);
 }
